@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>form 태그(2)</title>
+</head>
+<body>
+    <input type="color" id="head" name="head"
+    value="#e66465">
+    <input type="number" min="3" max="10" step="1">  
+    <input type="range" min="3" max="10" step="1">
+    <textarea cols="20" rows="3"></textarea>   
+    <br>
+    <input type="date" value="2025-01-12" 
+    min="2025-01-01" max="2025-01-13">
+    <input type="month" min="2025-10">
+    <input type="time" value="16:10">
+<br>
+    <!-- checknox : name이 같은 여러개 값 선택 -->
+    <input type="checkbox" value="1" id="jja"
+    name="lunch">
+    <label for="jja">짜장면</label>
+    <input type="checkbox" value="2" id="bok"
+    name="lunch">
+    <label for="bok">볶음밥</label>
+    <!-- radio : name이 같은 것중에 하나만 -->
+    <input type="radio" value="1" id="seoul"
+    name="addr">
+    <label for="seoul">서울</label>
+    <input type="radio" value="2" id="dae"
+    name="addr">
+    <label for="dae">대전</label>
+    <br>
+    <select name="user_select" id="user_select">
+        <option value="0">선택하기</option>
+        <option value="1">다이제</option>
+        <option value="2">콘치</option>
+
+
+    </select>
+    <br>
+    <progress max="100" value="7"></progress>
+    <br>
+    <form method="get" name="testFrm" accept="#">
+        <input type="text" required>
+        <button type="button"
+        onclick="alert('안녕');">버튼</button>
+        <button type="submit">제출</button>
+        <button type="reset">테스트</button>
+
+    </form>
+    <br>
+    <h2>피자 주문하기</h2>
+    <form>
+        <fieldset>
+            <legend>고객정보</legend>
+            <label for="user_na">고객명 :</label>
+            <input type="text" id="user_nms"><br>
+            <label for="user_nums">전화번호 :</label>
+            <input type="text" id="user_nums"><br>
+            <label for="user_e">E-mail :</label>
+            <input type="email" id="user_e"><br>
+        </fieldset>
+        
+        <fieldset>
+            <legend>피자 사이즈</legend>
+            <input type="radio" value="1" id="small"
+            name="addr">
+            <label for="small">Small</label><br>
+            <input type="radio" value="2" id="medium"
+            name="addr">
+            <label for="medium">Medium</label><br>
+            <input type="radio" value="3" id="large"
+            name="addr">
+            <label for="large">Large</label>
+        </fieldset>
+        <fieldset>
+            <legend>토핑 선택</legend>
+            <input type="checkbox" value="1" 
+            id="so" name="so">
+            <label for="so">새우</label><br>
+            <input type="checkbox" value="2" 
+            id="go" name="go">
+            <label for="go">고구마</label><br>
+            <input type="checkbox" value="3" 
+            id="gam" name="gam">
+            <label for="gam">감자</label><br>
+            <input type="checkbox" value="4" 
+            id="pap" name="pap">
+            <label for="pap">파인애플</label><br>
+        </fieldset><br>
+        
+        <label >희망 배송 시간 :</label>
+        <input type="time">
+        <br><br>
+        <button>주문하기</button>
+        </select>
+    </form>
+</body>
+</html>
