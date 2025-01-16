@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML 태그 접근</title>
+</head>
+<body>
+    <h2>id 기준 접근</h2>
+    <div id="idTarget">
+        변경전
+    </div >
+    <button type="button" onclick="turnRed();">
+        빨갛게
+    </button>
+    <script>
+        function turnRed(){
+            var it = document.getElementById('idTarget');
+            it.style.color = 'red';
+        }
+    </script>
+    <h2>class 기준 접근</h2>
+    <p class="a">p1</p>
+    <span class="b a">span1</span>
+    <p class="b">p2</p>
+    <input type="button" value="a만"
+    onclick="changeOnlyA();">
+    <script>
+        function changeOnlyA(){
+            var el = document.getElementsByClassName('a');
+            console.log(el);
+            // 1. 인덱스 기준으로 접근
+            // el[0].style.color='hotpink';
+            // 2. 반복문
+            for(var i = 0; i<el.length;i++){
+                // el[i].style.color='green';
+                if(i==0){
+                    el[i].style.color='red';
+                }else{
+                    el[i].style.color='green';
+                }
+            }
+        }
+    </script>
+    <h2>태그명 기준 접근</h2>
+    <ul>
+        <li>HTML5</li>
+        <li>CSS3</li>
+        <li>ES6</li>
+    </ul>
+    <button type="button" onclick="changeJSBulue();">JS 좋아!</button>
+    <script>
+        function changeJSBulue(){
+            var tagE1 = document.getElementsByTagName('li');
+            console.log(tagE1);
+            tagE1[2].style.color='blue';
+        }
+    </script>
+    <h2>name 속성 기준 접근</h2>
+    <label>
+        <input type="checkbox" name="food" value="1">
+        짜장면
+    </label><br>
+    <label>
+        <input type="checkbox" name="food" value="2">
+        짬뽕
+    </label><br>
+    <label>
+        <input type="checkbox" name="food" value="3">
+        군만두
+    </label><br>
+    <button type="button" onclick="addReview();">
+        리뷰 이벤트 참여
+    </button>
+    <script>
+        function addReview(){
+            var nameE1 = document.getElementsByName('food');
+            console.log(nameE1);
+            // nameE1[2].checked=true;
+            
+
+            var checStatus = nameE1[2].checked;
+            console.log(checStatus);
+            if(checStatus){
+                // 체크 된 상태
+                nameE1[2].checked = false;
+            }else{
+                nameE1[2].checked=true;
+            }
+        }
+    </script>
+
+    <h2>선택자 기준 접근</h2>
+    <button type="button"
+    onclick="practiceQuery();">
+        접근하기
+    </button>
+    <script>
+        function practiceQuery(){
+            var one = document.querySelector('#idTarget');
+            // document.getElementById('idTarget');
+            one.style.color='orange';
+            var many = document.querySelectorAll('.b');
+            many[0].style.color='red';
+        }
+    </script>
+    <h2>value 속성 사용하기</h2>
+    <input type="text" id="userName">
+    <input type="button" value="가져오기" id="getNameBtn">
+    <input type="button" value="바꿔주기" id="setNameBtn">
+    <script>
+        document.getElementById('getNameBtn').onclick = function(){
+            var userName = document.getElementById('userName').value;
+            alert(userName);
+        }
+        document.getElementById('setNameBtn').onclick=function(){
+            // document.getElementById('userName').value += '김철수';
+            document.getElementById('userName').value = '김철수';
+        }
+    </script>
+
+    <h2>style 속성 활용하기</h2>
+    <style>
+        /* #styleBtn{
+            /* background-color: cornflowerblue; */
+        } */
+    </style>
+    <input id="styleBtn" type="button" style="background-color: cornflowerblue;"
+    value="스타일 변신" onclick="changeStyle();">
+    <script>
+        function changeStyle(){
+            // console.log('함수 연결 확인')
+            var st1 = document.getElementById('styleBtn').style.backgroundColor;
+            console.log(st1);
+            var ele2 = document.getElementById('styleBtn');
+            var st2 = getComputedStyle(ele2).backgroundColor;
+            console.log(st2);
+
+            ele2.style.backgroundColor = 'gold';
+        }
+    </script>
+<br><br><br><br>
+
+    <input type="color" id="colors">
+    <button type="button" id="changeCol"
+    onclick="changecc();">변경</button>
+    
+    <div class="box box4" id="con"></div>
+    
+    <style>
+        .box4{
+            position: static;
+            top: 20px; left: 200px;
+            background-color: black;
+        }
+        .box{
+            width: 100px;
+            height: 100px;
+            border: 2px solid black;
+        }
+    </style>
+    <input type="button" id="min" value="50x50" onclick="clickMax">
+    <button type="button" id="min"onclick="clickMax">50x50</button>
+    
+    <script>
+        function changecc(){
+            document.getElementById('changeCol').onclick = function(){
+            var colorm = document.getElementById('colors').value;
+            alert(colorm);
+            var ele2 = document.getElementById('con');
+            ele2.style.backgroundColor = colorm;
+            el2.style.color=colorm;
+        }
+        function clickMax(){
+            document.getElementById('min').onclick = function(){
+            var mins = document.getElementById('min').value;
+            alert(mins);
+            var ele2 = document.getElementById('con');
+            ele2.style.width
+            el2.style.color=colorm;
+        }
+        }
+    }
+    </script>
+    
+    <h2>innerHTML</h2>
+    <div id="text1">
+        <p>Hello!!!!!!</p>
+    </div>
+    <div id="text2">안녕하세요~</div>
+    <input type="button" value="가져오기" onclick="getTag();">
+    <input type="button" value="바꿔주기" onclick="setTag();">
+    <script>
+        function setTag(){
+            document.getElementById('text1').innerHTML+='<h1>Ohhhh</h1>';
+        }
+        function getTag(){
+            var t1 = document.getElementById('text1').innerHTML;
+            var t2 = document.getElementById('text2').innerHTML;
+            console.log(t1);
+            console.log(t2);
+        }
+    </script>
+
+
+
+
+
+
+
+
+        
+</body>
+</html>

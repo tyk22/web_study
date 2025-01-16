@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>basic</title>
+</head>
+<body>
+    <h1>인라인(inline)</h1>
+    <button type="button" 
+        onclick="alert('안녕하세요~');">
+        내장 함수
+    </button>
+    <button type="button" 
+    onclick="userFunc();">
+        사용자 정의 함수
+    </button>
+    <script>
+        // 자바 스크립트의 함수 선언
+        /*
+        
+        */
+        function userFunc(){
+            console.log('반가워요~');
+        }
+    </script>
+    <br><br><br><br><br>
+    <h1>인터널 (internal)</h1>
+    <button type="button"
+        id="inBtn">
+        인터널 버튼
+    </button>
+    <script>
+        document.getElementById('inBtn').onclick 
+        = function(){
+            alert('Hi~');
+        }
+    </script>
+    <h2>익스터널(external)</h2>
+    <button type="button"
+    id="exBtn">
+        익스터널 버튼
+    </button>
+    <script src="../resources/semple.js"></script>
+    <br>
+    <h2>데이터 입출력</h2>
+    <h3>console.log();</h3>
+    <button type="button"
+    onclick="printConsole()">
+        콘솔 테스트
+    </button>
+    <script>
+        function printConsole(){
+            console.log('Hello World!');
+        }
+    </script>
+    <button type="button"
+    onclick="myName()">
+        나의 이름은?
+    </button>
+    <script>
+        function myName(){
+            console.log('태영');
+        }
+    </script>
+
+    <h3>얼럿(알림)</h3>
+    <button type="button" onclick="printAlert();">
+        얼럿 테스트
+    </button>
+    <script>
+        function printAlert(){
+            alert('헬로 월드');
+        }
+    </script>
+
+    <button type="button"
+    onclick="dayDate();">
+        오늘 날짜
+    </button>
+    <script>
+        function dayDate(){
+            alert('2025년01월16일 목요일');
+        }
+    </script>
+    <h2>프롬프트</h2>
+    <input type="button" value="이름 입력" 
+            onclick="insertName();">
+    <script>
+        function insertName(){
+            var name = prompt('이름을 입력하세요.','홍길동');
+            console.log(name);
+        }
+    </script>
+    <input type="button" value="위치"
+        onclick="buttonGps();">
+        <script>
+            function buttonGps(){
+                var gps = 
+                prompt('어디에 있으세요?');
+                console.log(gps);
+                // java처럼 실행구문 안에 넣어서 한번에 사용가능
+                //console.log(prompt('어디에 있음?'));
+            }
+        </script>
+
+    <h2>컨펌</h2>
+    <button type="button"
+    onclick="printYesOrNo();">
+        확인받기
+    </button>
+    <script>
+        function printYesOrNo(){
+            // var flag = 
+            // confirm('당신은 로봇입니까?')
+            // console.log(flag);
+            // if(flag == true){
+            //     console.log('hi robot~');
+            // } else{
+            //     console.log('사람');
+            // }
+            if(confirm('당신은 로봇입니까?')){
+                console.log
+                ('로봇일때');
+            }else{
+                console.log('인간');
+            }
+        }
+    </script>
+    
+    <button type="button" 
+    onclick="dayWat();">일요일</button>
+    <script>
+        function dayWat(){
+            if(confirm('오늘은 일요일인가요?')){
+                console.log('O');
+            }else{
+                console.log
+                ('X');
+            }
+        }
+    </script>
+    <h2>도큐먼트 라이트</h2>
+    <button type="button"
+    onclick="printTag();">
+        바껴라!
+    </button>
+    <script>
+        function printTag(){
+            // document.write('<h1>제목</h1>');
+            document.write('Lipsum');
+        }
+    </script>
+    <button type="button"
+    onclick="nameSelect();">
+        제목 출력
+    </button>
+    <script>
+        function nameSelect(){
+            document.write('<h1>제목은 역시 h1</h1>');
+        }
+    </script>
+</body>
+</html>
