@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<input type="color" id="colorPalette">
+<input type="button" id="colorBtn" value="변경">
+<style>
+    .container{
+        width: 100px; height: 100px;
+        background-color: black;
+    }
+</style>
+<div class="container" id="youna"></div>
+<script>
+    document.getElementById('colorBtn').onclick=function(){
+        var color1=document.getElementById('colorPalette').value;
+        document.getElementsByClassName('container')[0].style.backgroundColor=color1;
+    }
+</script>
+<input type="button" id="ma" value="50x50">
+
+
+<div id="ynh"></div>
+<style>
+    #ynh{
+        width: 100px;height: 100px;
+        background-color: antiquewhite;
+    }
+</style>
+<button type="button" value="200px" id="ty">100x100</button>
+<script>
+    document.getElementById('ma').onclick=function(){
+        var min = document.getElementById('youna'); // < 그냥 박스 담음  넣어버림
+        min.style.width=('50px');
+        min.style.height=('50px');
+    }
+</script>
+<script>
+        document.getElementById('ty').onclick=function(){
+        var min = document.getElementById('ynh');
+        var si = document.getElementById('ty').value;
+        min.style.width=(si);
+        min.style.height=(si);
+    }
+</script>
+</body>
+</html>
