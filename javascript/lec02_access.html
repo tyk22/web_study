@@ -184,21 +184,28 @@
     </script>
     
     <h2>innerHTML</h2>
-    <div id="text1">
+    <div id="test1">
         <p>Hello!!!!!!</p>
     </div>
-    <div id="text2">안녕하세요~</div>
+    <div id="test2">안녕하세요~</div>
     <input type="button" value="가져오기" onclick="getTag();">
     <input type="button" value="바꿔주기" onclick="setTag();">
     <script>
         function setTag(){
-            document.getElementById('text1').innerHTML+='<h1>Ohhhh</h1>';
+            // document.getElementById('text1').innerHTML+='<h1>Ohhhh</h1>';
+            document.getElementById('test1').innerText='<h1>oggggg</h1>';
         }
         function getTag(){
-            var t1 = document.getElementById('text1').innerHTML;
-            var t2 = document.getElementById('text2').innerHTML;
-            console.log(t1);
-            console.log(t2);
+            var t3 = document.getElementById('test1').innerText;
+            var t4 = document.getElementById('test2').innerText;
+            console.log(t3);
+            console.log(t4);
+            
+
+            // var t1 = document.getElementById('text1').innerHTML;
+            // var t2 = document.getElementById('text2').innerHTML;
+            // console.log(t1);
+            // console.log(t2);
         }
     </script>
 
