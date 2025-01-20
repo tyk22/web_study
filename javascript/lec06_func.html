@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>함수</title>
+</head>
+<body>
+    <!-- id도 같이 맞춰줘야하는거 조금 짜침 -->
+    <h1 id="red" onclick="changeRed();">빨강색</h1> 
+    <h1 id="orange" onclick="changeColor('orange');">주황색</h1> 
+    <h1 id="gold" onclick="changeEle(this);">노랑색</h1> 
+    <script>
+        function changeRed(){
+            document.getElementById('red').style.color='red';
+        }
+        function changeColor(colorCode){
+            document.getElementById(colorCode).style.color=colorCode;
+        }
+        function changeEle(ele){
+            ele.style.color = ele.id;
+        }
+    </script>
+    <h1>매개변수</h1>
+    <input type="button" value="기본" onclick="printFruli('수박',35000);">
+    <br>
+    <input type="button" value="순서 뒤집기" onclick="printFruli(15000,'딸기');">
+    <br>
+    <input type="button" value="작은" onclick="printFruli('참외');">
+    <br>
+    <input type="button" value="많은" onclick="printFruli('수박',19999,'초특가');">
+    <br>
+    <script>
+        function printFruli(name='수박',price=30000){
+            console.log(`과일 이름 : ${name}`);
+            console.log(`과일 가격 : ${price}`);
+            // if(typeof(name)=='string'
+            // && typeof(price)=='number'){
+            // }else{
+            //     console.log('매개변수의 순서,개수,자료형을 지키세요.');
+            // }
+        }
+    </script>
+    <h1>키오스크</h1>
+    <p>창립 기념일 행사로 전상품 5%할인 됩니다</p>
+    <label for="priceA">할인 전 :</label>
+    <input type="number" id="priceA"><br>
+    
+    <input type="radio" value="1" id="5pro" name="addr" 
+    onchange="calcPrice();">
+    <label for="5pro">기본 할인(5%)</label><br>
+    <input type="radio" value="2" id="5pro" name="addr"
+    onchange="calcPrice(10);"">
+    <label for="5pro">통신사(10%)</label><br>
+    <label for="">결제액 : </label>
+    <!-- <input type="number" id="input"> -->
+    <div id="input"></div>
+    <script>
+        function calcPrice(percent = 5){
+    // 1. 할인전 가격 가져오기
+    let pris= Number(document.getElementById('priceA').value);
+    let pss = document.getElementsByName('addr')[0].value;
+    // 2. 매개변수 percent를 기준으로 결제액 계산하기
+    console.log(pris);
+    console.log(pss);
+    // switch()
+    pris=pris-(pris*(percent/100));
+    // 3. 마지막 input의 값을 결제액으로 바꾸기
+        document.getElementById('input').innerHTML=`<input type="number" value=${pris}>`;
+}
+    </script>
+</body>
+</html>
