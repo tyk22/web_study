@@ -166,5 +166,14 @@
                 console.log(rnd);
         }
     </script>
+    <button onclick="scrollTest();">스크롤 이동</button>
+    <script>
+        const scrollTest = function(){
+            // scroll(0,10);
+            let point = document.getElementById('lorem').offsetTop;
+            // scrollTo(0,point);
+            scrollTo({left:0,top:point,behavior:'smooth'});
+        }
+    </script>
 </body>
 </html>
