@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>window 객체</title>
+</head>
+<body>
+    <h1>창 열고 닫기</h1>
+    <button type="button" onclick="crateWindow();">새로운 창 열기</button>
+
+
+    <script>
+        let newWindow;
+        let crateWindow = function(){
+            // window.open();
+            // window.open('https://www.naver.com');
+
+            // window.open('https://www.naver.com','_self');
+            // window.open('https://www.naver.com','_blank');
+            // window.open('https://www.naver.com','_blank','width=300','height=300');
+            newWindow=open('https://www.naver.com','_blank','width=300','height=300');
+            
+        }
+    </script>
+    <button onclick="closeWindow();">창 닫기</button>
+    <script>
+        let closeWindow=function(){
+            // window.close();
+            newWindow.close();
+
+        }
+    </script>
+    
+    <button onclick="openInput();">입력창 열기</button>
+    <button onclick="getInfo();">입력창 정보 가져오기</button>
+
+    <script>
+        let openInput=function(){
+            newWindow = open('','_blank','width=300, height=300');
+            newWindow.document.write(`<label for="text_input">입력</label>
+                                        <input type="text" id="text_input">`);
+        }
+        let getInfo =function(){
+            let textInput = newWindow.document.getElementById('text_input').value;
+            console.log(textInput);
+        }
+    </script>
+    <!-- 1. 로그인 버튼 생성
+         2. 로그인 버튼을 클릭하면 아이디와 비밀번호를 입력할 수 있는 창이 생김
+         3. 새로운 창에 닫기 버튼 클릭하면 창이 닫히게 구성 -->
+
+
+    <button onclick="newWindow.close();">창 닫기</button>
+
+    <button onclick="logIn();">로그인</button>
+    <script>
+        let logIn = function(){
+            newWindow= open('','_blank','width=300, height=300');
+            newWindow.document.write(`<label for="idName">아이디</label>
+                        <input type="text" id="idName"><br>
+                        <label for="passwd">비밀번호</label>
+                        <input type="password" id="passwd">
+                        <button onclick="window.close();">창 닫기</button>`);
+        }
+    </script>
+    <button onclick="moveTest();">창 위치 변경</button>
+    <script>
+        const moveTest = function(){
+            newWindow.moveTo(Math.round(Math.random()*900)+1,500);
+            newWindow.resizeTo(10,300);
+        }
+    </script>
+    <h1>timeout</h1>
+    <button onclick="timeoutStart();">시작</button>
+    <button onclick='timeoutEnd();'>종료</button>
+    <div id="container"></div>
+    <script>
+        let globalTime;
+        let timeoutStart=function(){
+            globalTime = setTimeout(function(){
+                document.getElementById('container').innerHTML = '<h1>타임아웃!!</h1>';
+            },5000);
+        }
+        let timeoutEnd=function(){
+            clearTimeout(globalTime);
+        }
+    </script>
+    <h1>interval</h1>
+    <button onclick="intervalStart();">시작</button>
+    <button onclick="intervalEnd();">종료</button>
+
+    <script>
+        let inter;
+        const intervalStart=function(){
+            let num = 10;
+            inter=setInterval(function(){
+                document.getElementById('container').innerHTML += num-- +'<br>';
+            },1000)
+        }
+        const intervalEnd=function(){
+            clearInterval(inter);
+        }
+        
+
+    </script><br><br><br>
+    
+    <div style="background-color: azure;">
+    <span id="timeLimit">6</span>
+    <span>초</span>
+    <br>
+    <p>다음 중 프론트엔드 개발자가 다루는 언어가 아닌 것은?</p>
+    <select id="selects">
+    <option value="0">선택하기</option>
+    <option value="1">1번</option>
+    <option value="2">2번</option>
+    <option value="3">3번</option>
+    <option value="4">4번</option>
+    </select>
+    <ol>
+        <li>CSS</li>
+        <li>HTML</li>
+        <li>JavaScript</li>
+        <li>Java</li>
+    </ol>
+    <button onclick="startTime();">시작</button>
+    <button onclick="choice();">제출</button>
+</div>
+    <script>
+        let selectTime;
+        let limit;
+        const startTime=function(){
+            limit = Number(document.getElementById('timeLimit').innerText);
+            
+            selectTime = setInterval(function(){
+                document.getElementById('timeLimit').innerHTML=limit--;
+            },1000);
+            
+            if(selectTime==0){
+                clearInterval(selectTime);
+            }
+        }
+        let choice = function(){
+        
+                
+            
+            let chc = Number(document.getElementById('selects').value);
+            console.log(chc);
+            let char;
+            switch(chc){
+                case 1 :char='ㄴㄴㄴ';break;
+                case 2 :char='ㄴㄴㄴ';break;
+                case 3 :char='ㄴㄴㄴ';break;
+                case 4 :char='ooo';break;
+                default:break;
+            }
+            if(chc==4){
+                clearInterval(selectTime);
+            }
+            alert(char);
+        }
+
+    </script>
+    <h1 id="before_ele">before(전)</h1>
+    <script>
+        window.onload = function(){
+            console.log(document.getElementById('before_ele').innerText);
+            console.log(document.getElementById('after_ele').innerText);
+        }
+    </script>
+    <h1 id="after_ele">after(후)</h1>
+    <button onclick="printInformation(screen);">sccreen 객체 출력</button>
+    <button onclick="printInformation(navigator);">navigator 객체 출력</button>
+    <button onclick="printInformation(history);">history 객체 출력</button>
+    <button onclick="printInformation(location)">location 객체 출력</button>
+    
+    <div id="screen_div">
+        
+    </div>
+    <script>
+        let printInformation=function(obj){
+            const div = document.getElementById('screen_div');
+            for(key in obj){
+                div.innerHTML +=`${key} : ${obj[key]} <br>`;
+            }
+        }
+        </script>
+    <button onclick="history.back();">이전</button>
+    <button onclick="history.forward();">앞으로</button>
+    
+    <button onclick="location.href='https://www.naver.com';">href</button>
+    <button onclick="location.assign('https://www.naver.com')">assign</button>
+    <button onclick="location.replace('https://www.naver.com')">replace</button>
+    <button onclick="location.reload();">reload</button>
+
+    <h1>텍스트 노드가 있는 태그 생성</h1>
+    <button onclick="addTextElement();">태그 추가</button>
+    <button onclick="createImg();">이미지 추가</button>
+    <div id="tag_div">
+
+    </div>
+    <script>
+        const createImg = function(){
+            const imgTag = document.createElement('img');
+            imgTag.setAttribute('src','../resources/dung.png');
+            imgTag.setAttribute('alt','뚱이가 인사합니다');
+            imgTag.setAttribute('width','200');
+            document.getElementById('tag_div').appendChild(imgTag);
+        }
+        const addTextElement= function(){
+            // document.getElementById('tag_div').innerHTML+='<p>Hello</p>';
+            const pTag = document.createElement('p');
+            const pText = document.createTextNode('Hello');
+            pTag.appendChild(pText);
+            document.getElementById('tag_div').appendChild(pTag);
+        }
+
+
+    </script>
+
+    <h1>텍스트 노드 있는 객체 생성</h1>
+    
+    <input type="text" value="태그입력" id="tag">
+    <input type="text" value="문구입력" id="mongo">
+    <button onclick="textType();">버튼</button>
+    <div id="isMe">
+
+    </div>
+    <script>
+        
+        const textType=function(){
+            let tType = document.getElementById('tag').value;
+        
+            let tMongo = document.getElementById('mongo').value;
+            
+            const tagTag = document.createElement(tType);
+            const tagTag2= document.createTextNode(tMongo);
+            tagTag.appendChild(tagTag2);
+            document.getElementById('isMe').appendChild(tagTag);
+            console.log(tType,tMongo);
+        }
+
+    </script>
+
+    <button onclick="cerate1();">생성</button>
+    <div id="input_div"></div>
+    
+    <script>
+        const cerate1 = function(){
+            const tatag = document.createElement('input');
+            tatag.setAttribute('type','text');
+            tatag.setAttribute('value','user01');
+            tatag.setAttribute('id','user_id');
+            document.getElementById('input_div').appendChild(tatag);
+        }
+
+    </script>
+    <h3>기준</h3>
+    <ul id="sample_ul">
+        <li>수박</li>
+        <li>딸기</li>
+        <li>레몬</li>
+    </ul>
+    <h3>실제</h3>
+    <button onclick="makeList();">목록 생성</button>
+    <div id="ul_div">
+        
+    </div>
+    <script>
+        const makeList = function(){
+            const arr = ['전','홍','식'];
+            const ul = document.createElement('ul');
+            for(let i=0;i<arr.length;i++){
+                const li = document.createElement('li');
+                const text = document.createTextNode(arr[i]);
+                li.appendChild(text);
+                ul.appendChild(li);
+            }
+            document.getElementById('ul_div').appendChild(ul);
+
+            // const li1 = document.createElement('li');
+            // const text1 = document.createTextNode('수박');
+            // li1.appendChild(text1);
+            // const ul = document.createElement('ul');
+            // ul.appendChild(li1);
+            // document.getElementById('ul_div').appendChild(ul);
+
+        }
+    </script>
+    <h1>insertAdjacentElement</h1>
+    <style>
+        #insert_div{border: 1px solid crimson;}
+        #origin{background-color: aquamarine;}
+    </style>
+    <button onclick="insertTest();">원하는 위치에 추가</button>
+    <button onclick="changeInsert();">위치 변경</button>
+    <div id="insert_div">
+        <h1 id="origin">판단용 h1</h1>
+    </div>
+    <script>
+        const changeInsert = function(){
+            const sample = document.getElementById('sample_ul');
+            const insertDiv = document.getElementById('insert_div');
+            insertDiv.insertAdjacentElement('beforeend',sample);
+        }
+
+        const insertTest = function(){
+            const h3 = document.createElement('h3');
+            const h3Text = document.createTextNode('지정태그앞(형제)');
+            h3.appendChild(h3Text);
+
+            const h2 = document.createElement('h2');
+            const h2Text = document.createTextNode('지정태그뒤~~');
+            h2.appendChild(h2Text);
+
+            const div = document.getElementById('insert_div');
+            div.insertAdjacentElement('beforebegin',h3);
+            // div.insertAdjacentElement('afterbegin',h3);
+            div.insertAdjacentElement('afterend',h2);
+        }
+    </script>
+
+    <!-- <button onclick="logIn();">로그인</button>
+    <script>
+        let logIn = function(){
+            newWindow= open('','_blank','width=300, height=300');
+            newWindow.document.write(`<label for="idName">아이디</label>
+                        <input type="text" id="idName"><br>
+                        <label for="passwd">비밀번호</label>
+                        <input type="password" id="passwd">
+                        <button onclick="window.close();">창 닫기</button>`);
+        }
+    </script> -->
+
+    <h2>메뉴 추가</h2>
+    <ul id="uls">
+        <li>짜장면</li>
+        <li>볶음밥</li>
+        <li>짬뽕</li>
+    </ul>
+    <input type="text" placeholder="추가할 메뉴 작성" id="foodName">
+    <button type="button" onclick="foodAdd();">추가</button>
+    <br>
+    <button type="button" onclick="migration();">이동</button>
+    <script>
+        
+        
+        const foodAdd = function(){
+
+            let ulGps = document.getElementById('uls'); // ul id값값
+            const foodName1 = document.getElementById('foodName').value; //메뉴명
+            let liAdd = document.createElement('li'); // 추가할 자식 객체
+            const location =document.createTextNode(foodName1); // 추가할 노드
+            liAdd.appendChild(location);
+            ulGps.insertAdjacentElement('beforeend',liAdd);
+            document.getElementById('foodName').value='';
+        }
+        const migration=function(){
+            let menu = document.getElementById('uls').lastElementChild;
+                console.log(menu);
+            let ulGps = document.getElementById('uls');
+                ulGps.insertAdjacentElement('afterbegin',menu);
+            }
+
+    </script>
+    <h1>class 속성 추가 및 삭제</h1>
+    <style>
+        .colorful{
+            border:3px double deeppink;
+            background-color: red;
+        }
+    </style>
+    <p id="standard">기준 p태그</p>
+    <button type="button" onclick="addClassTest();">colorful 클래스 추가</button><br>
+    <button type="button" onclick="removeClassTest();">colorful 클래스 삭제</button><br>
+    <script>
+        const addClassTest = function(){
+            document.getElementById('standard').classList.add('colorful');
+
+        }
+        const removeClassTest = function(){
+            document.getElementById('standard').classList.remove('colorful');
+        }
+    </script>
+    <style>
+        .highlight{
+            color:yellow;
+            background-color: green;
+        }
+
+    </style>
+        <h1 id="aet">asd</h1>
+    <button onclick="addClass();">추가</button>
+    <button onclick="removeClass();">삭제</button>
+    <script>
+        const addClass = function(){
+            document.getElementById('aet').classList.add('highlight');
+        }
+        const removeClass= function(){
+            document.getElementById('aet').classList.remove('highlight');
+
+        }
+    </script>
+    <h1>주변태그 접근</h1>
+    <div id="searchTag">
+        <h2>얘는 h2에요~</h2>
+        <ul>
+            <li>가</li>
+            <li>나</li>
+            <li>다</li>
+        </ul>
+        <button id="search_btn">주변 조회</button>
+        <button id="remove_btn">태그 제거</button>
+    </div>
+    <script>
+        let trueOrFalse= true;
+        document.getElementById('remove_btn').onclick = function(){
+            if(trueOrFalse==true){
+                const deleteElement=this.parentElement.children[1];
+                // =this.previousElementSibling.previousElementSibling;
+                deleteElement.remove();
+                trueOrFalse=false;
+            }
+        }
+
+        document.getElementById('search_btn').onclick = function(){
+            const tar = this;
+            console.log(tar);
+            const parent = tar.parentElement;
+            console.log(parent);
+            const children = parent.children;
+            console.log(children);
+            const arr = this.parentElement.children;
+            console.log(arr);
+            for(let i = 0; i < arr.length;i++){
+                console.log(i+':'+arr[i].tagName);
+                if(arr[i].tagName =='H2'){
+                    arr[i].style.backgroundColor='gold';
+                }else if(arr[i].tagName == 'UL'){
+                    const li = arr[i].children;
+                    console.log(li);
+                }
+            }
+            const firstLi = this.parentElement.children[1].children[0];
+            console.log(firstLi);
+            const secondLi = firstLi.nextElementSibling;
+            console.log(secondLi);
+            const ulTarget = document.getElementById('searchTag').children[1].previousElementSibling;
+            console.log(ulTarget);
+        }
+    </script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>객체 생성</h1>
+    <button type="button" onclick="majeObj1();">리터럴</button>
+    <script>
+        let majeObj1 = function(){
+            let person = {};
+            person['name'] = '홍길동';
+            person['age'] = 50;
+            console.log(person);
+
+            let student = {
+                name : '김철수',
+                age : 20,
+                hobby :['독서','영화'],
+                toString : function(){
+                    return this.name+'은(는)'+this.age+'입니다.';
+                },
+                item:{
+                    name : '샤프',
+                    print : 20000
+                }
+            };
+            console.log(student);
+        }
+    </script>
+    <button type="button" onclick="createObj();">생성자(new)</button>
+    <script>
+        let createObj = function(){
+            let member = new Object();
+            member['phone']='01011112222';
+            console.log(member);
+        }
+    </script>
+    <button onclick="testObj();">생성자 함수</button>
+    <script>
+        let testObj=()=>{
+            let student = Student1('영희',1);
+            console.log(student);
+        }
+        let Student1 = function(name1,grade2){
+            return {
+                name : name1,
+                grade : grade2
+            };
+        };
+    </script><br>
+    <label for="brand">브랜드 :</label>
+    <input type="text" id="brand"><br>
+
+    <label for="model ">모델명 :</label>
+    <input type="text" id="model"><br>
+
+    <label for="year ">제조 연도 :</label>
+    <input type="text" id="year"><br>
+
+    <button type="button" onclick="car();">만들기</button>
+    <script>
+        let car=()=>{
+            let bra = document.getElementById('brand').value;
+            let mod = document.getElementById('model').value;
+            let ye = document.getElementById('year').value;
+
+            let list = cas(bra,mod,ye);
+            console.log(list);
+        };
+
+        let cas=function(brand,model,year){
+            return {
+                '브랜드' :brand,
+                '모델명' :model,
+                '제조 연도':year
+            };
+        };
+    </script>
+    <h1>객체 속성 추가 및 삭제</h1>
+    <button onclick="addProp();">추가</button>
+    <button onclick="removeProp();">삭제</button>
+    <script>
+        let sampObj={};
+        let addProp=()=>{
+            sampObj['f'+'u'+'n'] = function(){
+                console.log('확인');
+            }
+            sampObj.num=100;
+            console.log(sampObj);
+        }
+        let removeProp=()=>{
+            delete(sampObj['num']);
+            delete(sampObj.fun);
+            console.log(sampObj);
+        }
+    </script>
+    <h1>객체 호출</h1>
+    <button onclick="makePerson();">생성</button>
+    <script>
+        let makePerson=function(){
+            let p = setPerson('수철',true,['수영','골프',{name:'만년필',price:100}]);
+            // 1. 리터럴 : number, string, boolean
+            let vall = p.name;
+            let vall2 = p['name'];
+
+            let word = 'Student'; // ??
+            let vall3 = p['is'+word]; // ? 
+            console.log(vall,vall2,vall3);
+
+            // 2. 배열 접근
+            let arr = p['hobby'];
+            let arr2 = p.hobby;
+
+            let val4 = p['hobby'][0];
+                val4 = p.hobby[1];
+                val4 = arr[0];
+
+            let str = p.hobby.join('+');
+            
+            p['hobby'].forEach(function(ele){
+                console.log(`${ele} 접근`);
+            });
+            // 3. 객체
+            // let val5 = p['item']['name'];
+            //     val5 = p['item'].name;
+
+            // let val6 = p.item['price'];
+            //     val6 = p.item.price;
+            
+            // console.log(val5,val6);
+
+            // 4. 함수
+            console.log(p.callName());
+            console.log(p['callName']());
+
+            p.testFunc();
+            p['testFunc']();
+
+            // 5. for in문
+            for(key in p){
+                console.log(key);
+                let valu = p[key];
+                console.log(valu);
+            }
+        }
+        let setPerson=function(name,bool,arr,item){
+            let obj={
+                name : name,
+                isStudent : bool,
+                hobby : arr,
+                item : item,
+                callName : function(){
+                    return '나의 이름은'+this.name;
+                },
+                testFunc : function(){
+                    if(this.isStudent){
+                        console.log(`학생${this.name}`);
+                    }else{
+                        console.log(`${this.name}님`);
+                    }
+                }
+            };
+            return obj;
+        }
+
+    </script>
+    <fieldset>
+        
+        <legend>출력</legend>
+        <label for="menu">메뉴명 :</label>
+        <input type="text" id="menu">
+        <label for="price">가격 :</label>
+        <input type="number" id="price">
+    </fieldset>
+    <button type="button" onclick="insertBread();">입력</button>
+    <button type="button" onclick="printBerad();">출력</button>
+    <script>
+        let bread = new Object();
+        let insertBread = function(){
+            let menu = prompt("메뉴명 :");
+            let price = prompt("가격 :");
+                
+            bread={
+                    menu : menu,
+                    price : price
+            };
+                console.log(bread);
+        }
+
+        let printBerad=function(){
+            let menu1 = document.getElementById('menu').value=bread.menu;
+            let price = document.getElementById('price').value=bread.price;
+            
+            let tuOrFl = menu1==null;
+            if(tuOrFl!=true){
+                tuOrFl= menu1=='';
+            }
+            let tuOrFl2 = price==null;
+            if(tuOrFl2!=true){
+                tuOrFl2= price=='';
+            }
+            
+            if(tuOrFl && tuOrFl2){
+                alert('제대로 쓰세요');
+            }else if(tuOrFl){
+                alert('메뉴명이 입력되지 않았어요. ');
+            }else if(tuOrFl2){
+                alert('가격이 입력되지 않았어요. ');
+            }
+            // if(menu1=='' && price==''){
+            //     alert('제대로 쓰세요');
+            // }
+        };
+
+        // let menu = prompt("메뉴명 :");
+        // let price = prompt("가격 :");
+        //     if (menu == null && price == null) {
+        //     console.log('정보가 입력되자 않았어요요.');
+        //     } else if(menu == null){
+        //         console.log('메뉴명이 입력되지 않았어요');
+        //     } else if(price==null){
+        //         console.log('가격이 입력되지 않았어요');
+        //     }
+        // menu=document.getElementById('menu').value;
+        // price=document.getElementById('price').value;
+        // let bread  = function(menu,price){
+        //     let obj={
+        //         menu : menu,
+        //         price :price
+        //     }
+        //     arr = [menu,price];
+        //     console.log(arr);
+        //     return arr;
+        // }
+        // let output = function(bread){
+        //     // let a =bread.arr;
+        //     console.log(bread);
+        // }
+        
+        
+    </script>
+
+    <button onclick="thisFunc();">this Test</button>
+
+    <script>
+        const thisFunc = function(){
+            acconut('철수').printName();
+        }
+        const acconut  = function(name){
+            return {name : name,
+                    printName : function(){
+                        console.log(this.name);
+                    }
+        }
+        }
+    </script>
+    <button onclick="showThis(this);">화살표 this</button>
+    <script>
+        let showThis = (element) =>{
+            console.log(element);
+        }
+    </script>
+    <h1>객체 배열</h1>
+    <script>
+        let customers = [
+            {
+            name :'영희',
+            age : 24
+            }
+        ];
+        console.log(customers[0]['name']);
+        console.log(customers[0].name);
+        
+        customers.push({name:'철수',gender:'M'});
+        customers.unshift({name : '길동',age:51});
+
+        customers.pop();
+        customers.shift();
+
+        console.log(customers);
+
+    </script>
+</body>
+</html>
