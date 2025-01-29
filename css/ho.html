@@ -29,5 +29,48 @@
             </tr>
         </tbody>
     </table>
+    <label for="buyer">구매자 :</label>
+    <input type="text" id="buyer" placeholder="구매자 이름을 입력하세요"><br>
+    <label for="prdNm">상품명 :</label>
+    <input type="text" id="prdNm" placeholder="구매 상품명을 입력하세요"><br>
+    <label for="prc">가격 :</label>
+    <input type="text" id="prc" name="price" placeholder="구매 가격을 입력하세요"><br>
+    <button type="button" onclick="userby();">입력값 출력하기</button>
+    <div id="bax" style="background-color: antiquewhite; width: 100px;height: 100px;" >
+    </div>
+    <script>
+        let userby=function(){
+            let tage1 = document.getElementsByTagName('input')[0].value;
+            let tage2 = document.getElementById('prdNm').value;
+            let tage3 = document.getElementsByName('price')[0].value;
+            console.log(tage3);
+            document.getElementById('bax').innerText='구매자:'+tage1+'\n';
+            document.getElementById('bax').innerText+='상품명:'+tage2+'\n';
+            document.getElementById('bax').innerText+='가격:'+tage3+'원';
+        }
+    </script>
+    
+    <form>
+        <fieldset>
+            <legend>사용자 정보</legend>
+            <label>아이디 : </label>
+            <input type="text" id="userId">
+
+            <label>비밀번호 : </label>
+            <input type="password" id="userPw">
+            <button type="button" onclick="see();">보기</button>
+            <button type="button" onclick="avlity();">숨기기</button>
+        </fieldset>
+        
+    </form>
+    <script>
+        let pw= document.getElementById('userPw');
+        let see = function(){
+                pw.type='text';
+        }
+        let avlity = function(){
+            pw.type='password';
+        }
+    </script>
 </body>
 </html>
