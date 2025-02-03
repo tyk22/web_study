@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../resources/jquer-3.7.1.js"></script>
+</head>
+<body>
+    <div id="prompt_div">
+        <h2>promt로 입력받기</h2>
+        <button>실행</button>
+        <div></div>
+    </div>
+    <script>
+        $(document).ready(function(){
+            $('#prompt_div button').on('click', function(){
+                let execution = window.prompt('메시지를 입력하세요');
+                console.log(execution);
+                $('#prompt_div div').text(execution);
+            });
+        })
+    </script>
+
+    <button id="excn">실행하기</button>
+    <script>
+        
+    </script>
+</body>
+</html>
