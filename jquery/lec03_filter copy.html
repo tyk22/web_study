@@ -23,8 +23,79 @@
     </script>
 
     <button id="excn">실행하기</button>
+    <div id="box">
+
+    </div>
     <script>
-        
+        $(document).ready(function(){
+            $('#excn').on('click',function(){
+                let arr = new Array;
+            for(let i = 0; i<5;i++){
+            let random = Math.floor(Math.random()*100);
+            arr.push(random);
+            }
+            arr.sort(function(a,b){
+                if(a>b)return 1;
+                if(a<b)return -1;
+                else return 0;
+            })
+
+            $('#box').text(arr);
+            console.log(arr);
+            })
+        })   
+    </script>
+    <button id="inputout">출력</button>
+    <table id="tbls">
+
+    </table>
+    <script>
+
+        $(document).ready(function(){
+            $('#inputout').on('click',function(){
+                const arr = [
+                    {name:'김철수',age : 20,address:'서울'},
+                    {name:'이영희',age:30,address:'부산'},
+                    {name:'최철수',age:40,address:'광주'}
+                ];
+                $.each(arr,function(index,value){
+                    $('#tbls').append(`${index} : ${value.name} : ${value.age} : ${value.address}<br>`);
+                })
+            })
+        })
+        </script>
+        <h1>할인 과일 가게</h1>
+        <ul id="fruitShop">
+            
+        </ul>
+        <button id="discount">할인하기</button>
+    <script>
+        const products = {
+        "사과": 3000,
+        "바나나": 2000,
+        "체리": 8000,
+        "포도": 7000,
+        "수박": 5000
+        };
+        $(document).ready(function(){
+            $('#fruitShop').html('');
+            $.each(products,function(index,value){
+                $('#fruitShop').append(`<li>${index}:${value}원</li>`)
+            })
+        })
+        $(document).ready(function(){
+            $('#fruitShop').html('');
+            $('#discount').on('click',function(){
+                $.each(products,function(index,value){
+                    if(value>=7000){
+                        products[index] = value*0.8;
+                    }else if (value>=5000){
+                        products[index] = value*0.9;
+                    }
+                    $('#fruitShop').append(`<li>${index}:${value}원</li>`);
+                })
+            })
+        })
     </script>
 </body>
 </html>
