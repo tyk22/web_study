@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>홀수? 짝수?</h2>
+
+    <button onclick="beadAdd();">구슬 추가</button>
+    <button onclick="even();">홀짝</button>
+    <button onclick="newGame();">초기화</button>
+    <div id="bead">
+        
+    </div>
+    <script>
+        let cont = 0;
+        let beadAdd = function(){
+            document.getElementById('bead').innerHTML+='<img src="../resources/모코코.webp" width="10" height="10">';
+            cont++;
+        }
+        let even = function(){
+            if(cont%2==0){
+                alert("짝수입니다.");
+            }else {
+                alert("홀수입니다.");
+            }
+        }
+        let newGame = function(){
+            document.getElementById('bead').innerHTML='';
+        }
+    </script>
+
+    <h1>계산기</h1>
+    <label>첫번째 값 : </label>
+    <input type="number" id="frsNmb"><br>
+    <label>두번째 값 : </label>
+    <input type="number" id="tuoNmb"><br>
+    <button onclick="add(1);">+</button>
+    <button onclick="add(2);">-</button>
+    <button onclick="add(3);">X</button>
+    <button onclick="add(4);">/</button>
+    <button onclick="add(5);">%</button>
+    <hr>
+    <span>
+        계산 결과 : 
+    </span>
+    <span id="result"></span>
+    <script>
+        let add = function(cof){
+            let frs = Number(document.getElementById('frsNmb').value);
+            let trs = Number(document.getElementById('tuoNmb').value);
+            let rslt = 0;
+            document.getElementById('result').innerText='';
+            switch(cof){
+                case 1 : rslt = frs + trs; break;
+                case 2 : rslt = frs - trs; break;
+                case 3 : rslt = frs * trs; break;
+                case 4 : rslt = frs / trs; break;
+                case 5 : rslt = frs % trs; break;
+                default:break;
+            }
+            document.getElementById('result').innerText+=rslt;
+            console.log(rslt);
+        }   
+    </script>
+    <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>연산자 최종 복습문제</title>
+            <style>
+                #resultDiv{
+                    background-color: cornsilk;
+                    width: 200px;
+                    height: 100px;
+                }
+            </style>
+        </head>
+        <body>
+            <p>
+                여러분 연산자 배운다고 고생많았어요!<br>
+                복습도 할겸 종합 문제를 풀어봅시다~<br>
+                문제는 제가 드린 코드에 빈 script 태그를 채우는 거에요!!
+            </p>
+            <h2>1. 단항 연산자</h2>
+            <h3>
+                버튼을 클릭하면 사용자가 입력한 숫자의 부호를<br>
+                반대로 변경하여 alert창에 띄우세요.
+                ※ HTML 태그를 보고 JS 코드를 유추해보는 문제입니다. ※
+            </h3>
+            <input type="number" id="num1" placeholder="숫자를 입력하세요."/>
+            <input type="button" value="1번문제" onclick="addMinus();"/>
+            <script>
+                // 이곳에 코드를 추가하세요.
+                let addMinus = function(){
+                let code= document.getElementById('num1').value;
+                    // code = -code;
+                    alert(-code);
+                }
+            </script>
+            <h2>2. 논리 부정 연산자</h2>
+            <h3>
+                참 radio를 클릭하면 false, 
+                <br>거짓 radio를 클릭하면 true값이 
+                <br>alert창에 출력되도록 코드를 추가하세요.
+            </h3>
+            <p>Hint. changeBool 함수의 매개변수로 논리형 변수를 사용하세요.</p>
+            <input type="radio" name="bool" id="yes" onclick="changeBool(false);">
+            <label for="yes">참</label>
+            <input type="radio" name="bool" id="no" onclick="changeBool(true);">
+            <label for="no">거짓</label>
+            <script>
+                function changeBool(bool){
+                    // input type radio의 onclick과 이곳에 코드를 추가하세요.
+                    if(bool){
+                        alert('true');
+                    }else {
+                        alert('false');
+                    }
+                }
+            </script>
+            <h2>3. 증감연산자</h2>
+            <h3>
+                num1은 20이고, num2는 0일때 
+                버튼을 클릭했을때 나오는<br> num1과 num2의 값을 보고
+                다음중 어떤 연산이 이루어졌는지 선택하세요.
+            </h3>
+            <p>
+                랜덤 버튼을 클릭하면 연산처리 후 결과값이 노란창에 출력됩니다.<br>
+                이를 보고 전위 연산인지 후위 연산인지 판단하시어<br>
+                아래 두개의 식 중에 하나를 선택하면 정답여부를 알 수 있습니다.
+            </p>
+            <input type="button" value="랜덤" onclick="showAnswer();"/>
+            <input type="button" value="다시풀기" onclick="resetAnswer();"/>
+            <div id="resultDiv"></div>    
+            <input type="radio" name="answer" value="0" onchange="checkAnswer(this);"/>
+            <label>num2 = ++num1</label>
+            <input type="radio" name="answer" value="1" onchange="checkAnswer(this);"/>
+            <label>num2 = num1++</label>
+            <script>
+                let result = 0; 
+                function resetAnswer(){
+                    result = 0;
+                    document.querySelector('#resultDiv').innerHTML = '';
+                    let obj = document.querySelectorAll('input[name=answer]');
+                    for(let i = 0 ; i < obj.length ; i++){
+                        obj[i].checked = false;
+                    }
+                }
+                function showAnswer(){
+                    let resultDiv = document.getElementById('resultDiv');
+                    resultDiv.innerHTML = '';
+                    let num1 = 20;
+                    let num2 = 0;
+                    let ranNum = Math.floor(Math.random()*2);
+                    if(ranNum == 0){
+                        num2 = ++num1;
+                    } else if(ranNum==1){
+                        num2 = num1++;
+                    }
+                    resultDiv.innerHTML += 'num1 : '+num1+'<br>';
+                    resultDiv.innerHTML += 'num2 : '+num2;
+                    result = ranNum;
+                }
+                function checkAnswer(element){
+                    let answer = element.value;
+                    if(result == answer){
+                        alert('잘했어요!!');
+                    } else{
+                        alert('다시한번 생각해볼까요?');
+                    }
+                }
+            </script>
+            <h2>4. 복합대입연산자</h2>
+            <h3>버튼을 클릭하면 textarea안의 숫자에서 1만큼 빼기해서 textarea에 출력하세요.</h3>
+            <p>Hint. 100을 10을 0을 하나 빼는게 아니라 100을 99로 1만큼 음수 연산하는 거에요~</p>
+            <textarea cols="50" rows="1" id="textLong" style="resize:none;">1000000000</textarea>
+            <input type="button" value="하나씩 빼기" onclick="minusCharacter();">
+            <script>
+                function minusCharacter(){
+                    // 이곳에 코드를 추가하세요.
+                    let textBox=document.getElementById('textLong');
+                        textBox.innerText=textBox.value-1;
+                }
+            </script>
+
+            <h1>문자 누적하기</h1>
+            <input type="text" id="textInput">
+            <button type="button" onclick="addTest1();">누적</button><br>
+            <textarea cols="20" rows="10" id="dong"></textarea>
+            <script>
+                let addTest1 = function(){
+                    let wheil = document.getElementById('textInput');
+                    let ca = wheil.value;
+                    let bbox = document.getElementById('dong');
+                    bbox.value+=ca+'\n';
+                    wheil.value='';
+                    
+                }
+            </script>
+        </body>
+        </html>
+</body>
+</html>

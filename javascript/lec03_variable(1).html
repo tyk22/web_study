@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>자라나라나라</h1>
+    <button type="button" onclick="sizeUp();">+</button><br>
+    <img id="mococo" src="../resources/모코코.webp" width="1" height="1">
+
+    <script>
+        let sizeUp = function(){
+            let moco = document.getElementById('mococo');
+            
+            const imgWidth = moco.width;
+            const imgHeight = moco.height;
+            moco.width = imgWidth+10;
+            moco.height =imgHeight+10;
+            
+            
+                // moco.width += "1";
+                // moco.height += "1";
+        }
+    </script>
+    <h3>이미지 크기 조정</h3>
+    <label for="">가로 : </label>
+    <input type="number" id="wid"><br>
+    <label for="">세로 : </label>
+    <input type="number" id="hei">
+    <button onclick="sizeCon();">변경</button><br>
+    <img id="mococos" src="../resources/모코코.webp" width="50" height="50">
+    <script>
+        let sizeCon = function(){
+            let width1 = document.getElementById('wid').value;
+            let height1 = document.getElementById('hei').value;
+            let img1 = document.getElementById('mococos');
+            
+            img1.width=width1;
+            img1.height=height1;
+        }
+    </script>
+</body>
+</html>

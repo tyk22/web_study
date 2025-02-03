@@ -42,7 +42,7 @@
     <br>
     <progress max="100" value="7"></progress>
     <br>
-    <form method="get" name="testFrm" accept="#">
+    <form method="get" name="testFrm" action="#">
         <input type="text" required>
         <button type="button"
         onclick="alert('안녕');">버튼</button>
@@ -96,6 +96,172 @@
         <br><br>
         <button>주문하기</button>
         </select>
+    </form><br><br><br><br><br><br>
+    <h1>과제 1</h1>
+    <h1>납품 대장</h1>
+    <form>
+        <fieldset>
+            <legend>납품자 정보</legend>
+            <ol>
+                <li>
+                    <label for="vndNm">납품자명:</label>
+                    <input type="text" id="vndNm" placeholder="name">
+                </li>
+                <li>
+                    <label for="vndEmail">email:</label>
+                    <input type="text" id="vndEmail" placeholder="kty@xodud.com">
+                </li>
+            </ol>
+        </fieldset>
     </form>
+    <form>
+        <fieldset>
+            <legend>납품정보</legend>
+            <ul>
+                <li>
+                    <label for="prdNm">상품명:</label>
+                    <input type="text" id="prdNm">
+                </li>
+                <li>
+                    <label for="dlvQnt">납품수량:</label>
+                    <input type="number" id="dlvQnt" min="100" placeholder="최소 100">
+                </li>
+                <li>
+                    <label for="dlvCls">납품등급:</label>
+                    <input type="range" id="dlvCls" min="1" max="10" value="5">
+                </li>
+                <li>
+                    <label for="etc">기타사항:</label>
+                    <textarea id="etc"></textarea>
+                </li>
+            </ul>
+        </fieldset>
+    </form>
+    <button type="button">send message</button>
+    <h1>회원가입</h1>
+    <form>
+        <fieldset>
+            <legend>필수 입력 사항</legend>
+                    <b style="text-align:center;">ID</b>
+                    <input type="text" id="userId" placeholder="아이디 10글자 이내">
+                    <button type="button">중복 확인</button><br>
+                    <b style=text-align:center;>비밀번호</b>
+                    <input type="password" placeholder="영문,숫자 포함 8자리 이상"><br>
+                    <b style=text-align:center;>비밀번호 확인</b>
+                    <input type="password"><br>
+                    <b style=text-align:center;>Email</b>
+                    <input type="email">
+                    <select>
+                        <option value="0">직접 입력</option>
+                        <option value="1">naver.com</option>
+                        <option value="2">gmail.com</option>
+                    </select>
+        </fieldset>
+    </form>
+    <form>
+        <fieldset>
+            <legend>추가 정보</legend>
+            <label for="img">프로필 사진 :</label>
+            <input type="file" id="img">
+            <br>
+            <label>성별 : </label>
+            <input type="radio" name="gnd">
+            <label>남</label>
+            <input type="radio" name="gnd">
+            <label>여</label><br>
+            <label>생년월일 : </label>
+            <input type="date"><br>
+            <label>취미</label><br>
+            <input type="checkbox" value="1" 
+            id="a" name="a">
+            <label for="a">야구</label>
+            <input type="checkbox" value="2" 
+            id="b" name="b">
+            <label for="b">농구</label>
+            <input type="checkbox" value="3" 
+            id="c" name="c">
+            <label for="c">축구</label><br>
+            <input type="checkbox" value="4" 
+            id="d" name="d">
+            <label for="d">공부</label>
+            <input type="checkbox" value="5" 
+            id="e" name="e">
+            <label for="e">음악감상</label><br>
+            <input type="checkbox" value="6" 
+            id="f" name="f">
+            <label for="f">기타</label>
+            <input type="text" >
+            <br>
+            <label>자기 소개</label><br>
+            <textarea cols="50" rows="5"></textarea>
+        </fieldset>
+    </form>
+    <h1>백엔드 개발자 지원서</h1>
+    <P>Java, Spring, DataBase에 대한 기술적 이해와 경험이 있는 분을 찾습니다.</P>
+    <hr>
+    <form>
+    <table method="get" accept="#"> 
+        
+        <tr>
+            <th >개인정보</th>
+            
+        </tr>
+        <tr>
+            <td></td>
+            <td>이름</td>
+            <td>
+                <input type="text" placeholder="공백없이 입력하세요.">
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>연락처</td>
+            <td>
+                <input type="text">
+            </td>
+        </tr>
+        <tr>
+            <th>지원 분야</th>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+            <input type="radio" name="koro">
+            </td>
+            <td>
+                <label>백엔드 개발</label>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+            <input type="radio" name="koro">
+            </td>
+            <td>
+                <label>서버 개발</label>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+            <input type="radio" name="koro">
+            </td>
+            <td>
+                <label>개발 환경 개선</label>
+            </td>
+        </tr>
+        <tr>
+            <th>지원동기</th>
+        </tr>       
+        <tr>
+            <td colspan="3"><textarea rows="5" cols="30" placeholder="지원 동기를 간략히 써주세요."></textarea></td>
+            <td></td>
+            <td></td>
+            
+        </tr>
+    </table>
+    <button type="submit">접수하기</button>
+    <button type="reset">다시쓰기</button>
+</form>
 </body>
 </html>

@@ -87,9 +87,39 @@
             // 6개의 숫자 - 7개의 숫자
             let reg = /^[0-9]{6}-[0-9]{7}/;
                 reg = /^[0-9]{6}-[1-4][0-9]{6}/;
+            
+            // 월 1~12
+            // 1자리 : 01 ~ 09 
+            // 2자리 : 10 ~ 12
+            // ((0)[1-9]|1[0-2])
+            
+            // 일 : 한자리 10자리/20자리 , 30/31
+            // (0[1-9]|[1-2][0-9]|3[0-1])
+            reg =/^[0-9]{2}((0)[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])-[1-4][0-9]{6}$/;
+            if(reg.test(str)){
+                alert('정상입력');
+            }else{
+                alert("잘못");
+            }
+
 
         }
     </script>
 
+
+    <input type="text" id="telno">
+    <button type="button" onclick="selectPhon();">확인</button>
+
+    <script>
+        let selectPhon = function(){
+            let phone = document.getElementById('telno').value;
+            let tlpNmb =/^(01([0-1]|[6-9])-([0-9]{3}|[0-9]{4})-[0-9]{4})$/;
+            if(tlpNmb.test(phone)){
+                alert('O');
+            }else{
+                alert('X');
+            }
+        }
+    </script>
 </body>
 </html>

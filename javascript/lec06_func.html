@@ -185,5 +185,160 @@
             ='<h1>확인</h1>';
         })();
     </script>
+    
+    <style id="upDown">
+        #mococo{
+            width: 150px; 
+            height: 150px;
+            border: 4px dotted green;
+            border-radius: 40px;
+        }
+    </style>
+    <img id="mococo" src="../resources/모코코.webp" width= "150" height="150">
+    <input onchange="radiusAdd(value)" id="siz" type="range" min="0" max="75" step="5">
+    <span id="spNum"> </span>
+
+    <script>
+        let radiusAdd = function(round){
+            let size = document.getElementById('siz').value;
+            console.log(size);
+            document.getElementById('spNum').innerText=size;
+            
+            let intel = document.getElementById('mococo');
+            intel.style.borderRadius=size+'px';
+        }
+    </script>
+
+
+    <style>
+        #box{background-color: rgb(254, 187, 42); padding: 5px;}
+        #box{display:none}
+        
+    </style>
+
+
+    <fieldset style="background-color: gainsboro; text-align: center;">
+        <legend>검색할 항목을 선택하세요.</legend>
+        <input onclick="menu(1);" type="radio" name="selects" id="title">
+        <label for="title">제목</label>
+        <input onclick="menu(2);" type="radio" name="selects" id="date">
+        <label for="date">날짜</label>
+        <input onclick="menu(3);" type="radio" name="selects" id="writer">
+        <label for="writer">작성자</label>
+    </fieldset>
+    <div id="box">
+        
+        
+    </div>
+    
+    <script>
+        let menu = function(sick){
+            let core = document.getElementById('box');
+            core.style.display="block";
+            core.innerHTML='';
+            switch(sick){
+                case 1 :
+                        core.innerHTML+=`
+                        <label>검색할 제목을 입력하세요 : </label><br>
+                        <input type="text">
+                        <button>검색</button>`;break;
+                case 2 :core.innerHTML+=`
+                        <label>검색할 날짜을 입력하세요 : </label><br>
+                        <input type="date">
+                        ~
+                        <input type="date">
+                        <button>검색</button>`;break;
+
+                case 3 :core.innerHTML+=`
+                        <label>검색할 작성자를 입력하세요 : </label><br>
+                        <input type="text">
+                        <button>검색</button>`;break;
+                    default: break;
+            }
+        }
+    </script>
+    
+    <style>
+        #result_div{ 
+            background-color: gainsboro;
+            width: 560px;height: 90px;
+        }
+        li:first-child{ background-color: skyblue; }
+        li:nth-child(2){ background-color: yellowgreen; }
+        li:nth-child(3){ background-color: gold; }
+        li:nth-child(4){ background-color: orange; }
+        li:last-child{background-color: crimson; }
+    </style>
+    <h1>BMI지수 도출</h1>
+    <h2>BMI지수 = 몸무게kg / (키m * 키m)</h2>
+    <ul>
+        <li>18.5 미만 : 저체중</li>
+        <li>18.5 이상 24.9 미만 : 표준</li>
+        <li>25 이상 29.9 미만 : 과체중</li>
+        <li>30 이상 34.9 미만 : 비만</li>
+        <li>35이상 : 고도비만</li>
+    </ul>
+    <p>
+        사용자가 아래 입력창에 몸무게와 키를 입력하면 회색창에 BMI지수가 출력되도록 하세요.<br>
+        그리고, BMI 지수에 따라 회색창의 배경색을 li의 배경색과 같은 색으로 변경하세요.
+    </p>
+    <hr>
+    <p>
+        * Hint : 이 문제는 세단계로 풀어보세요. <br>
+        <mark>Step 1.</mark> 출력 버튼을 클릭했을 때 호출할 함수 하나(printDiv)로 기능을 만드세요.<br>
+        <mark>Step 2.</mark> printDiv는 두가지 역할을 수행하고 있습니다. <br>
+        BMI 지수를 계산하는 것, BMI 지수 결과를 기준으로 배경색을 변경하는 것이 그것이죠.<br>
+        BMI 지수 결과를 매개변수로 받아서 result_div의 배경색을 변경하는 함수(changeBack)을 만드세요.<br>
+        <mark>Step 3.</mark> printDiv 함수에서 해당 기능을 changeBack 함수의 호출구문으로 변경하세요.
+    </p>
+    <table>
+        <tr>
+            <td>
+                <label for="user_weight">몸무게 : </label>
+            </td>
+            <td>
+                <input type="number" id="user_weight" placeholder="kg단위로 입력하세요.">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="user_height">키 : </label>
+            </td>
+            <td>
+                <input type="number" id="user_height" placeholder="m단위로 입력하세요.">
+                <!-- 버튼에 onclick 속성을 추가하고 함수를 할당하세요. -->
+                <button onclick="printDiv();">출력</button>
+            </td>
+        </tr>
+    </table>
+    <div id="result_div">
+
+    </div>
+    <script>
+        let printDiv=function(){
+            let kG = Number(document.getElementById('user_weight').value);
+            let miri = Number(document.getElementById('user_height').value);
+            let bmi = kG/(miri*miri);
+            document.getElementById('result_div').innerText=bmi;
+            
+            changeBack(bmi);
+        }
+        let changeBack=function(bmi){
+            
+            let color1 = document.getElementById('result_div').style;
+            if(bmi>=35){
+                color1.backgroundColor='crimson';
+            }else if(bmi>=30){
+                color1.backgroundColor='orange';
+            }else if(bmi>=25){
+                color1.backgroundColor='gold';
+            }else if(bmi>=18.5){
+                color1.backgroundColor='yellowgreen';
+            }else {
+                color1.backgroundColor='skyblue';
+
+            }
+        }
+    </script>
 </body>
 </html>

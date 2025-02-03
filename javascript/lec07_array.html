@@ -303,6 +303,32 @@ let showMemo = function(){
         }
     </script>
 
+    <h1>
+        우리반 성적
+    </h1>
+    
+    <label>평균 : </label>
+    <span id="avg"></span><br>
+    <label>성적</label>
+    <input type="number" id="nu">
+    <button onclick="godiB();">추가</button>
+
+    <script>
+        let memoArr2 = new Array();
+        let godiB = function(){
+            document.getElementById('avg').innerText='';
+            let can = 0;
+            let av = 0;
+            let nums = Number(document.getElementById('nu').value);
+            memoArr2.push(nums);
+            for(let i = 0 ;i< memoArr2.length;i++){
+                can= can+memoArr2[i];
+                console.log(can);
+            }
+            av=can/memoArr2.length;
+            document.getElementById('avg').innerText=av;
+        }
+    </script>
 </body>
 
 </html>
