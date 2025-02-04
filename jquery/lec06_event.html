@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이벤트</title>
+    <script src="../resources/jquer-3.7.1.js"></script>
+</head>
+<body>
+    <h1>on 메소드</h1>
+    <div id="on_div">
+        <ul>
+            <li>html</li>
+            <li>css</li>
+            <li>javascript</li>
+        </ul>
+        <h3>h3이벤트</h3>
+    </div>
+    <script>
+        $(document).ready(function(){
+            // $('#on_div>ul>li').on('mouseenter',function(){
+            //     console.log($(this).text());
+            // });
+            $('#on_div>ul>li').mouseenter(function(){
+                console.log($(this).text());
+            })
+            $('#on_div>h3').on({
+                'mouseenter' : function(){$(this).css('color','red')},
+                'mouseleave' : function(){$(this).css('color','gold')}
+            })
+        });
+    </script>
+    <h1>off 메소드</h1>
+    <button id="offBtn">이벤트</button>
+    <script>
+        $(document).ready(function(){
+            let count = 0 ;
+            $('#offBtn').on('click',function(){
+                if(count++<3){
+                    alert('버튼 클릭!');
+                }else{
+                    $(this).off('click');
+                }
+            })
+        })
+    </script>
+    <br>
+    <style>
+        .nightMode{
+            background-color: black;
+            color: aliceblue;
+        }
+    </style>
+    <button id="night">야간모드</button>
+    <button id="disabled">비활성화</button>
+    <script>
+        $(document).ready(function(){
+            $('#night').on('click',function(event){
+                event.preventDefault();
+                let st = $('body').toggleClass('nightMode');
+            })
+            $('#disabled').on('click',function(){
+                $('#night').off('click');
+            })
+        })
+
+    </script>
+</body>
+</html>
